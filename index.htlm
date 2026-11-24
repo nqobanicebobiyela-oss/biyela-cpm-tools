@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Telegram Web Tool</title>
+  <!-- Load Telegram Web App SDK -->
+  <script src="https://telegram.org"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: var(--tg-theme-bg-color, #ffffff);
+      color: var(--tg-theme-text-color, #000000);
+      padding: 20px;
+    }
+    button {
+      background-color: var(--tg-theme-button-color, #3390ec);
+      color: var(--tg-theme-button-text-color, #ffffff);
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <h2>Quick Calculator / Tool</h2>
+  <input type="text" id="userInput" placeholder="Enter value..." style="width: 100%; padding: 10px; margin-bottom: 15px;">
+  <button onclick="sendDataToBot()">Submit to Bot</button>
+
+  <script>
+    const tg = window.Telegram.WebApp;
+    tg.expand(); // Opens the web app to full height
+
+    function sendDataToBot() {
+      const value = document.getElementById('userInput').value;
+      // Sends data back to the Telegram bot and closes the window
+      tg.sendData(JSON.stringify({ input: value }));
+    }
+  </script>
+</body>
+</html>
